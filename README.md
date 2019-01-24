@@ -4,6 +4,9 @@
 ## Build Setup
 
 ``` bash
+# Clone project
+git clone git@github.com:perfectSymphony/vue-elementUI-admin.git
+
 # install dependencies
 npm install
 
