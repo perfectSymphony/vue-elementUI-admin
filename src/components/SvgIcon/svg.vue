@@ -1,4 +1,5 @@
 <template>
+<!-- 引入svg组件通用代码 -->
     <svg :class="svgClass" aria-hidden="true">
         <use :xlink:href="iconName"></use>
     </svg>    
