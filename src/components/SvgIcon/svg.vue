@@ -20,7 +20,9 @@ export default {
     computed: {
         svgClass() {
             if(this.className){
-                return 
+                return 'svg-icon' + this.className
+            } else {
+                return 'svg-icon'
             }
         },
         iconName() {
