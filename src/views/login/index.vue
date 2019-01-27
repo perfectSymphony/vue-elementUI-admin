@@ -1,90 +1,100 @@
 <template>
     <div class="login-container">
-        <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" class="login-form" auto-complete="off" label-position="left">
+        <el-form :model="loginForm" status-icon :rules="loginRules" ref="loginForm" class="login-form" auto-complete="off" label-position="left">
           <div class="title">vue-element-admin</div>
         <el-form-item prop="username">
           <span class="svg-container">
             <svg-icon icon-class="user" />
           </span>
-            <el-input type="text" name="username" v-model="ruleForm2.pass" auto-complete="off" placeholder="username"></el-input>
+            <el-input type="text" name="username" v-model="loginForm.username" auto-complete="off" placeholder="username" />
         </el-form-item>
         <el-form-item prop="password">
           <span class="svg-container">
             <svg-icon icon-class="password" />
           </span>
-            <el-input type="password" name="password" v-model="ruleForm2.checkPass" auto-complete="off" placeholder="password"></el-input>
+            <el-input :type="pwdType" name="password" v-model="loginForm.password" auto-complete="off" placeholder="password" @keyuo.enter.native="handleLogin" />
+            <span class="show-pwd" @click="showPwd"> 
+            <svg-icon icon-class="eye" />
+            </span>
         </el-form-item>
         <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm2')" style="width:100%;">Sign in</el-button>
+            <el-button :loading="loading" type="primary" @keyup.native.prevent="handleLogin" style="width:100%;">Sign in</el-button>
         </el-form-item>
+        <div class="tips">
+          <span style="margin-right: 20px;">username: admin</span>
+          <span>password: admin</span>
+        </div>
         </el-form>        
     </div>   
 </template>
 <script>
+
+import { isvalidUsername } from '@/utils/validate'
+
   export default {
+    name:'Login',
     data() {
-      var checkAge = (rule, value, callback) => {
-        if (!value) {
-          return callback(new Error('年龄不能为空'));
-        }
-        setTimeout(() => {
-          if (!Number.isInteger(value)) {
-            callback(new Error('请输入数字值'));
-          } else {
-            if (value < 18) {
-              callback(new Error('必须年满18岁'));
-            } else {
-              callback();
-            }
-          }
-        }, 1000);
-      };
-      var validatePass = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请输入密码'));
+      const validateUsername = (rule, value, callback) => {
+        if (!isvalidUsername(value)) {
+          return callback(new Error('请输入正确的用户名'))
         } else {
-          if (this.ruleForm2.checkPass !== '') {
-            this.$refs.ruleForm2.validateField('checkPass');
-          }
-          callback();
+          callback()
         }
-      };
-      var validatePass2 = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请再次输入密码'));
-        } else if (value !== this.ruleForm2.pass) {
-          callback(new Error('两次输入密码不一致!'));
+      }
+      const validatePass = (rule, value, callback) => {
+        if (value.length < 5) {
+          callback(new Error('密码不能小于5位'));
         } else {
           callback();
         }
-      };
+      }
       return {
-        ruleForm2: {
-          pass: '',
-          checkPass: '',
-          age: ''
+        loginForm: {
+          username: 'admin',
+          password: 'admin',
         },
-        rules2: {
-          pass: [
-            { validator: validatePass, trigger: 'blur' }
+        loginRules: {
+          username: [
+            { required: true, validator: validateUsername, trigger: 'blur' }
           ],
-          checkPass: [
-            { validator: validatePass2, trigger: 'blur' }
-          ],
-          age: [
-            { validator: checkAge, trigger: 'blur' }
+          password: [
+            { required: true, validator: validatePass, trigger: 'blur' }
           ]
-        }
-      };
+        },
+        loading: false,
+        pwdType: 'password',
+        redirect: undefined
+      }
+    },
+    watch: {
+      $route: {
+        handler: function(route){
+          this.redirect = route.query && route.query.redirect
+        },
+        immediate: true
+      }
     },
     methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
+      showPwd() {
+        if (this.pwdType === 'password') {
+              this.pwdType = ''
+        } else {
+          this.pwdType = 'password'
+        }
+      },
+      handleLogin() {
+        this.$refs.loginForm.validate((valid) => {
           if (valid) {
-            alert('submit!');
+            this.loading = true
+            this.$store.dispatch('Login',this.loginForm).then(() => {
+              this.loading = false
+              this.$route.push({path: this.redirect || '/' })
+            }).catch(() => {
+              this.loading = false
+            })
           } else {
-            console.log('error submit!!');
-            return false;
+            console.log('error submit!!')
+            return false
           }
         });
       }
@@ -143,7 +153,6 @@ $light_gray:#eee;
     padding: 35px 35px 15px 35px;
     margin: 120px auto;
   }
-
   .tips {
     font-size: 14px;
     color: #fff;
@@ -154,7 +163,6 @@ $light_gray:#eee;
       }
     }
   }
-
   .svg-container {
     padding: 6px 5px 6px 15px;
     color: $dark_gray;
@@ -162,7 +170,6 @@ $light_gray:#eee;
     width: 30px;
     display:inline-block;
   }
-
   .title {
     font-size: 26px;
     font-weight: 400;
@@ -170,6 +177,15 @@ $light_gray:#eee;
     margin: 0 auto 40px auto;
     text-align:center;
     font-weight:bold;
+  }
+  .show-pwd {
+    position: absolute;
+    right: 10px;
+    top: 7px;
+    font-size: 16px;
+    color: $dark_gray;
+    cursor: pointer;
+    user-select: none;
   }
 }
 </style>

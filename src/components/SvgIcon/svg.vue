@@ -1,7 +1,6 @@
 <template>
-<!-- 引入svg组件通用代码 -->
     <svg :class="svgClass" aria-hidden="true">
-        <use :xlink:href="iconName"></use>
+        <use :xlink:href="iconName" />
     </svg>    
 </template>
 
@@ -33,10 +32,11 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 /* svg字体图标通用样式 */
-.icon {
-   width: 1em; height: 1em;
+.svg-icon {
+   width: 1em;
+   height: 1em;
    vertical-align: -0.15em;
    fill: currentColor;
    overflow: hidden;
