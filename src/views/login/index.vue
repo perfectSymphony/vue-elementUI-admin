@@ -12,13 +12,15 @@
           <span class="svg-container">
             <svg-icon icon-class="password" />
           </span>
-            <el-input :type="pwdType" name="password" v-model="loginForm.password" auto-complete="off" placeholder="password" @keyuo.enter.native="handleLogin" />
+          <!--监听事件 @keyup.enter本身已经可以实现监听键盘事件，但是这里使用了element的封装的组件，这个时候使用按键修饰符需要加上.native -->
+            <el-input :type="pwdType" name="password" v-model="loginForm.password" auto-complete="off" placeholder="password" @keyup.enter.native="handleLogin" />
             <span class="show-pwd" @click="showPwd"> 
-            <svg-icon icon-class="eye" />
+            <svg-icon :icon-class="pwdType === 'password' ? 'eye':'eye-open'" />
             </span>
         </el-form-item>
         <el-form-item>
-            <el-button :loading="loading" type="primary" @keyup.native.prevent="handleLogin" style="width:100%;">Sign in</el-button>
+          <!-- vue 里面所有键盘事件都是需要加.native才能生效，如果在当前按钮之前绑定过键盘点击事件，后面的按钮都需要加.native才能生效。prevent是阻止冒泡 -->
+            <el-button :loading="loading" type="primary" @click.native.prevent="handleLogin" style="width:100%;">Sign in</el-button>
         </el-form-item>
         <div class="tips">
           <span style="margin-right: 20px;">username: admin</span>
@@ -88,12 +90,12 @@ import { isvalidUsername } from '@/utils/validate'
             this.loading = true
             this.$store.dispatch('Login',this.loginForm).then(() => {
               this.loading = false
-              this.$route.push({path: this.redirect || '/' })
+              this.$route.push({path: this.redirect || '/' })   // 登陆成功之后重定向到首页
             }).catch(() => {
               this.loading = false
             })
           } else {
-            console.log('error submit!!')
+            console.log('error submit!!')    // 登录失败之后，弹出提示信息
             return false
           }
         });
