@@ -2,7 +2,7 @@ import router from './router'
 import store from './store'
 import NProgress from 'nprogress' //progress进度条
 import 'nprogress/nprogress.css' //progress进度条样式
-import { message } from 'element-ui'
+import { Message } from 'element-ui'
 import { getToken } from '@/utils/auth' //验证权限
 
 const whiteList = ['/login'] //不重定向白名单
@@ -13,7 +13,7 @@ router.beforeEach((to, from, next) => {
             next({ path: '/' })
             NProgress.done()
         } else {
-            if (store.getters.roles.length === 0) {
+            if (store.getters.roles.length === 0) { //判断当前用户是否已拉取完user_info信息
                 store.dispatch('GetInfo').then(res => {
                     //拉取用户信息
                     next()
@@ -28,6 +28,7 @@ router.beforeEach((to, from, next) => {
             }
         }
     } else {
+        console.log(to)
         if (whiteList.indexOf(to.path) !== -1) {
             next()
         } else {

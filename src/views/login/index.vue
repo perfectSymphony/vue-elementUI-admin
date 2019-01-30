@@ -90,7 +90,7 @@ import { isvalidUsername } from '@/utils/validate'
             this.loading = true
             this.$store.dispatch('Login',this.loginForm).then(() => {
               this.loading = false
-              this.$route.push({path: this.redirect || '/' })   // 登陆成功之后重定向到首页
+              this.$router.push({path: this.redirect || '/' })   // 登陆成功之后重定向到首页
             }).catch(() => {
               this.loading = false
             })

@@ -18,3 +18,5 @@ service.interceptors.request.use(
         return config
     }
 )
+
+export default service
