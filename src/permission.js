@@ -18,7 +18,7 @@ router.beforeEach((to, from, next) => {
                     //拉取用户信息
                     next()
                 }).catch(err => {
-                    store.dispatch('FedLogout').then(() => {
+                    store.dispatch('FedLogOut').then(() => {
                         Message.error(err || '验证错误，请重新登录')
                         next({ path: '/' })
                     })

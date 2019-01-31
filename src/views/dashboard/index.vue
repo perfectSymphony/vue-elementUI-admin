@@ -8,11 +8,13 @@
 import { mapGetters } from 'vuex'
 
 export default {
-    name: 'dashboard',
+    name: 'Dashboard',
     computed: {
-        ...mapGetters([
-            name,
-            roles
+        ...mapGetters([ 
+            // 该辅助函数仅仅是将store中的getter映射到局部计算属性
+            //使用对象展开运算符将getter混入 computed 对象中 
+            'name',
+            'roles'
         ])
     }
 }
