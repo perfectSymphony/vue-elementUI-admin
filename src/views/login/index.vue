@@ -88,12 +88,9 @@ import { isvalidUsername } from '@/utils/validate'
         this.$refs.loginForm.validate((valid) => {
           if (valid) {
             this.loading = true
-            alert(3)
             this.$store.dispatch('Login', this.loginForm).then(() => {
-              alert(2)
               this.loading = false
               this.$router.push({path: this.redirect || '/' })   // 登陆成功之后重定向到首页
-              alert(1)
             }).catch(() => {
               this.loading = false
             })

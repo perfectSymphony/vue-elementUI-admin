@@ -29,6 +29,8 @@ const user = {
         Login({ commit }, userInfo) {
             const username = userInfo.username.trim()
             return new Promise((resolve, reject) => {
+                //下面是Login向后台发送username,userInfo.password获得登陆成功或失败的数据
+                //成功则设置token
                 login(username, userInfo.password).then(response => {
                     const data = response.data
                     setToken(data.token)
@@ -75,6 +77,7 @@ const user = {
         },
 
         //前端，登出
+        //前端登出只是前端退出登录并清除前端存储的登录信息，登出是要请求后台，后台做退出的相应操作
         FedLogOut({ commit }) {
             return new Promise(resolve => {
                 commit('SET_TOKEN', '')

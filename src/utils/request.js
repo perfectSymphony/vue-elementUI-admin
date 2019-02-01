@@ -13,9 +13,14 @@ const service = axios.create({
 service.interceptors.request.use(
     config => {
         if (store.getters.token) {
-            config.header["X-Token"] = getToken() //让每个请求携带自定义的token，可以跟自己的实际情况自行修改
+            //这个config后面点的是headers，不是header，哎呀，坑了我一天，哎呀呀
+            config.headers["X-Token"] = getToken() //让每个请求携带自定义的token，可以跟自己的实际情况自行修改
         }
         return config
+    },
+    error => {
+        console.log(error)
+        Promise.reject(error)
     }
 )
 
@@ -47,7 +52,19 @@ service.interceptors.response.use(
                     })
                 })
             }
+            return Promise.reject('error')
+        } else {
+            return response.data
         }
+    },
+    error => {
+        console.log('err' + error)
+        Message({
+            message: error.message,
+            type: 'error',
+            duration: 5 * 1000
+        })
+        return Promise.reject(error)
     }
 )
 
