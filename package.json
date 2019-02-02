@@ -71,6 +71,7 @@
         "normalize.css": "^8.0.1",
         "optimize-css-assets-webpack-plugin": "^3.2.0",
         "ora": "^1.2.0",
+        "path-to-regexp": "^2.4.0",
         "phantomjs-prebuilt": "^2.1.14",
         "portfinder": "^1.0.13",
         "postcss-import": "^11.1.0",
