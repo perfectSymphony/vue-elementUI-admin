@@ -63,14 +63,14 @@ const user = {
         },
 
         //登出
-        logOut({ commit, state }) {
+        LogOut({ commit, state }) {
             return new Promise((resolve, reject) => {
                 logout(state.token).then(() => {
                     commit('SET_TOKEN', '')
                     commit('SET_ROLES', [])
                     removeToken()
                     resolve()
-                }).cache(error => {
+                }).catch(error => {
                     reject(error)
                 })
             })

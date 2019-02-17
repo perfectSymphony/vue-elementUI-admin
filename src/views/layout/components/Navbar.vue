@@ -32,7 +32,7 @@ export default {
     }, 
     computed: {
         ...mapGetters([
-            'sidebar',
+            // 'sidebar',
             'avatar'
         ])
     },
