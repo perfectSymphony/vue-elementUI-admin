@@ -1,7 +1,7 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
-    <!-- <hamburger :toggle-click="toggleSideBar" class="hamburger-container"/>
-    <breadcrumb /> -->
+    <hamburger class="hamburger-container"/>
+    <!-- <breadcrumb /> -->
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
         <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
@@ -23,12 +23,12 @@
 <script>
 import { mapGetters } from 'vuex'
 // import Breadcrumb from '@/components/Breadcrumb'
-// import Hamburger from '@/components/Hamburger'
+import Hamburger from '@/components/Hamburger'
 
 export default {
     components: {
         // Breadcrumb,
-        // Hamburger
+        Hamburger
     }, 
     computed: {
         ...mapGetters([
