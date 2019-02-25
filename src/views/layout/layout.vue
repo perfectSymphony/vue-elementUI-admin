@@ -1,18 +1,20 @@
 
 <template>
 <div class="app-wrapper">
+    <sidebar />
     <div class="main-container">
         <navbar/>
     </div>
 </div>
 </template>
 <script>
-import { Navbar } from './components'
+import { Navbar, Sidebar } from './components'
 
 export default {
     name: 'Layout',
     components: {
-        Navbar
+        Navbar,
+        Sidebar
     },
     computed: {
         
