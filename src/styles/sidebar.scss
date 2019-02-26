@@ -1,6 +1,23 @@
 #app {
+    //右侧区域
+    .main-container {
+        min-height: 100%;
+        margin-left: 180px;
+        transition: margin-left .28s;
+        position: relative;
+    }
+
     //侧边栏
     .sidebar-container {
+        width: $sideBarWidth !important;
         transition: width 0.28s;
+        height: 100%;
+        position: fixed;
+        font-size: 0px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1001;
+        overflow: hidden;
     }
 }
