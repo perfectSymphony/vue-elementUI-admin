@@ -1,7 +1,7 @@
 <template>
     <div>
         <svg
-        :class="{'is-active':isactive}"
+        :class="{'is-active':isActive}"
         class="hamburger"
         viewBox="0 0 1024 1024"
         xmlns="http://www.w3.org/2000/svg"
@@ -16,7 +16,7 @@
 export default {
     name: 'Hamburger',
     props: {
-        isactive: {
+        isActive: {
             type: Boolean,
             default: false
         },

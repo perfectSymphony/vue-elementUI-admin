@@ -1,12 +1,13 @@
 <template>
   <el-scrollbar wrap-class="scrollbar-wrapper">
     <el-menu
+     :show-timeout="200"
      :default-active="$route.path"
-     background-color="#545c64"
      :collapse="isCollapse"
+     background-color="#304156"
      mode="vertical"
      >
-      <!-- <el-submenu index="1">
+      <el-submenu index="1">
         <template slot="title">
           <i class="el-icon-location"></i>
           <span slot="title">导航一</span>
@@ -35,7 +36,7 @@
       <el-menu-item index="4">
         <i class="el-icon-setting"></i>
         <span slot="title">导航四</span>
-      </el-menu-item> -->
+      </el-menu-item>
     </el-menu> 
   </el-scrollbar>   
 </template>
@@ -44,7 +45,7 @@ import { mapGetters } from 'vuex'
 import variables from '@/styles/variables.scss'
 
   export default {
-    methods: {
+    computed: {
       ...mapGetters([
         'sidebar'
       ]),

@@ -20,9 +20,23 @@
         overflow: hidden;
     }
     //重置element-ui样式
-    el-menu {
+
+    .el-scrollbar__view {
+        height: 100%;
+    }
+    .el-menu {
         border: none;
         height: 100%;
         width: 100% !important;
+    }
+
+    .hideSidebar {
+        .sidebar-container {
+            width: 36px !important;
+        }
+
+        .main-container {
+            margin-left: 36px;
+        }
     }
 }
