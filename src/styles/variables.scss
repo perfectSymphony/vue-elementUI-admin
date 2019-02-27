@@ -1,3 +1,6 @@
 //sidebar
-
+$menuBg:#304156;
 $sideBarWidth: 180px;
+:export {
+    menuBg: $menuBg
+}

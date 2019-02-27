@@ -1,6 +1,8 @@
 @import './variables.scss';
 @import './sidebar.scss';
-
+#app {
+    height: 100%;
+}
 
 a,
 a:focus,
@@ -11,11 +13,16 @@ a:hover {
     text-decoration: none;
 }
 
-div:focus{
+div:focus {
     outline: none;
 }
 
 a:focus,
 a:active {
     outline: none;
+}
+
+//全局样式
+.app-main {
+    min-height: 100%;
 }

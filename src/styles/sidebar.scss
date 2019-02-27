@@ -6,7 +6,6 @@
         transition: margin-left .28s;
         position: relative;
     }
-
     //侧边栏
     .sidebar-container {
         width: $sideBarWidth !important;
@@ -19,5 +18,11 @@
         left: 0;
         z-index: 1001;
         overflow: hidden;
+    }
+    //重置element-ui样式
+    el-menu {
+        border: none;
+        height: 100%;
+        width: 100% !important;
     }
 }

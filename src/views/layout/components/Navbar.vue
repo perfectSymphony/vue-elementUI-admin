@@ -1,6 +1,6 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
-    <hamburger class="hamburger-container"/>
+    <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" class="hamburger-container"/>
     <breadcrumb />
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
@@ -31,11 +31,24 @@ export default {
         Hamburger
     }, 
     computed: {
+      //使用对象展开运算符将 getter 混入 computed对象中
+      //该辅助函数仅仅是将store中的getter映射到局部计算属性
         ...mapGetters([
-            // 'sidebar',
+          //映射 this.sidebar到 this.$store.state.sidebar
+          //映射 this.avatar到 this.$store.state.avatar
+            'sidebar',
             'avatar'
         ])
     },
+  //经过mapGetters函数调用后的结果
+  // computed: {
+  //   sidebar() {
+  //     return this.$store.getters['sidebar']
+  //   },
+  //   avatar() {
+  //     return this.$store.getters['avatar']
+  //   }
+  // }
     methods: {
         toggleSideBar() {
             this.$store.dispatch('ToggleSideBar')
