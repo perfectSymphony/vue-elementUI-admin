@@ -1,10 +1,9 @@
 <template>
   <el-scrollbar wrap-class="scrollbar-wrapper">
     <el-menu
-     :show-timeout="200"
-     :default-active="$route.path"
-     :collapse="isCollapse"
-     background-color="#304156"
+      :background-color="variables.menuBg"
+      :text-color="variables.menuText"
+      :active-text-color="variables.menuActiveText"
      mode="vertical"
      >
       <el-submenu index="1">
@@ -49,14 +48,8 @@ import variables from '@/styles/variables.scss'
       ...mapGetters([
         'sidebar'
       ]),
-      routes() {
-        return this.$router.options.routes
-      },
       variables() {
         return variables
-      },
-      isCollapse() {
-        return !this.sidebar.opened
       }
     }
   }

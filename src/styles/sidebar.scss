@@ -18,25 +18,25 @@
         left: 0;
         z-index: 1001;
         overflow: hidden;
+        //重置element-ui样式
+        .scrollbar-wrapper {
+            overflow-x: hidden !important;
+            .el-scrollbar__view {
+                height: 100%;
+            }
+        }
+        .el-menu {
+            border: none;
+            height: 100%;
+            width: 100% !important;
+        }
     }
-    //重置element-ui样式
-
-    .el-scrollbar__view {
-        height: 100%;
-    }
-    .el-menu {
-        border: none;
-        height: 100%;
-        width: 100% !important;
-    }
-
     .hideSidebar {
         .sidebar-container {
-            width: 36px !important;
+            width: 55px !important;
         }
-
         .main-container {
-            margin-left: 36px;
+            margin-left: 55px;
         }
     }
 }
