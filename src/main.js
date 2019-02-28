@@ -17,6 +17,8 @@ import router from './router'
 import '@/icons/svg' // icon
 import '@/permission' // 权限控制
 
+import '../mock'
+
 Vue.use(ElementUI, { locale })
 
 Vue.config.productionTip = false
