@@ -1,6 +1,7 @@
 <template>
   <el-scrollbar wrap-class="scrollbar-wrapper">
     <el-menu
+      :collapse="isCollapse"
       :background-color="variables.menuBg"
       :text-color="variables.menuText"
       :active-text-color="variables.menuActiveText"
@@ -50,6 +51,9 @@ import variables from '@/styles/variables.scss'
       ]),
       variables() {
         return variables
+      },
+      isCollapse() {
+        return !this.sidebar.opened
       }
     }
   }
