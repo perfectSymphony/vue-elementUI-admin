@@ -2,13 +2,12 @@ import { param2Obj } from './utils'
 
 const tokens = {
     admin: {
-        tocken: 'admin-token'
+        token: 'admin-token'
     },
     editor: {
         token: 'editor-token'
     }
 }
-
 const users = {
     'admin-token': {
         roles: ['admin'],
