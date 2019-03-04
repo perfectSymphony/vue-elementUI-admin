@@ -3,7 +3,7 @@
     component标签切换组件
      -->
     <component v-bind="linkProps(to)">
-        <!-- <slot/> -->
+        <slot/>
     </component>
 </template>
 <script>
