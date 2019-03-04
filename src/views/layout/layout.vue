@@ -1,20 +1,21 @@
-
 <template>
 <div :class="classObj" class="app-wrapper">
     <sidebar class="sidebar-container"/>
     <div class="main-container">
         <navbar/>
+        <app-main/>
     </div>
 </div>
 </template>
 <script>
-import { Navbar, Sidebar } from './components'
+import { Navbar, Sidebar, AppMain } from './components'
 
 export default {
     name: 'Layout',
     components: {
         Navbar,
-        Sidebar
+        Sidebar,
+        AppMain
     },
     computed: {
         sidebar(){
