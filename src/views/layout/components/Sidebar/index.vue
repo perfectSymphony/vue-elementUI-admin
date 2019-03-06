@@ -7,7 +7,7 @@
       :active-text-color="variables.menuActiveText"
      mode="vertical"
      >
-      <sidebar-item />
+      <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path" />
     </el-menu> 
   </el-scrollbar>   
 </template>
@@ -25,6 +25,9 @@ import sidebarItem from './SidebarItem'
       ...mapGetters([
         'sidebar'
       ]),
+      routes(){
+        return this.$router.options.routes
+      },
       variables() {
         return variables
       },
