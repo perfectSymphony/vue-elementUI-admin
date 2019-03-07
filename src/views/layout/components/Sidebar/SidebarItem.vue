@@ -13,7 +13,7 @@
             <item :meta = "item.meta" />
         </template>
         <sidebar-item 
-          v-if="child in item.children"
+          v-for="child in item.children"
           :is-nest="true"
           :item="child"
           :key="child.path"
