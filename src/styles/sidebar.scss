@@ -2,7 +2,7 @@
     //右侧区域
     .main-container {
         min-height: 100%;
-        margin-left: 180px;
+        margin-left: $sideBarWidth;
         transition: margin-left .28s;
         position: relative;
     }
@@ -36,10 +36,20 @@
     }
     .hideSidebar {
         .sidebar-container {
-            width: 55px !important;
+            width: 36px !important;
         }
         .main-container {
-            margin-left: 55px;
+            margin-left: 36px;
+        }
+        .el-submenu {
+            // overflow: hidden;
+            //">"子选择器
+            &>.el-submenu__title {
+                padding-left: 10px !important;
+                .el-submenu__icon-arrow {
+                    display: none;
+                }
+            }
         }
     }
 }
