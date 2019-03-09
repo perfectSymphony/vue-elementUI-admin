@@ -1,4 +1,5 @@
 <template>
+<!-- sidebarItem接收路由，父路由path，父级索引，然后调用自身 -->
   <div v-if="!item.hidden" class="menu-wrapper">
       <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
         <app-link :to = "resolvePath(onlyOneChild.path)">
@@ -8,10 +9,12 @@
           </el-menu-item>          
         </app-link>
       </template>
+      <!-- 创建菜单分组 -->
       <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)">
         <template slot="title">
             <item :meta = "item.meta" />
         </template>
+        <!-- 递归调用自身，直到item不含子节点 -->
         <sidebar-item 
           v-for="child in item.children"
           :is-nest="true"
@@ -36,6 +39,9 @@ export default {
       Item,
       AppLink
     },
+    // 组件实例的作用域是孤立的，这意味着不能(也不应该)在子组件的模版中直接引用父组件的数据。父组件的数据需要通过props才能下发到子组件中
+    // 也就是props是子组件访问父组件数据的唯一接口
+    //props是单向数据绑定
     props: {
       item: {
         type: Object,
@@ -57,7 +63,6 @@ export default {
     methods: {
       hasOneShowingChild(children = [], parent){
         const showingChildren = children.filter(item => {
-          console.log(item)
           if(item.hidden){
             return false
           }else{

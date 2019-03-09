@@ -19,7 +19,9 @@ export default {
 
     methods: {
         linkProps(url){
+            console.log(url)
             if(isExternal(url)){
+                console.log(1)
                 return {
                     is: 'a',
                     href: url,
@@ -28,6 +30,8 @@ export default {
                 }
             }
             return {
+                //<router-link>组件支持用户在具有路由功能的应用中点击导航，
+                //通过to属性指定目标地址，默认渲染为带有正确连接的<a>标签，可以通过设置tag属性生成别的标签
                 is: 'router-link',
                 to: url
             }
