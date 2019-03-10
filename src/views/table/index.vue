@@ -70,7 +70,7 @@ import { getList } from '@/api/table'
         fetchData(){
             this.listloading = true
             getList(this.listQuery).then(response => {
-                console.log(response)
+                // console.log(response)
                 this.list = response.data.items
                 this.listloading = false
             })
