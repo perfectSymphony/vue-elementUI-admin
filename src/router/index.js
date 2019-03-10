@@ -30,6 +30,12 @@ export const constantRouterMap = [{
         hidden: true
     },
     {
+        path: '/404',
+        component: () => 
+        import('@/views/404'),
+        hidden: true
+    },
+    {
         path: '/',
         component: Layout,
         redirect: '/dashboard',
@@ -148,6 +154,11 @@ export const constantRouterMap = [{
                 title: 'menu2'
             }
         }]
+    },
+    {
+        path: '*',
+        redirect: '404',
+        hidden: true
     }
 ]
 
