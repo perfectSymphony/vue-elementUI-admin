@@ -25,6 +25,14 @@
                 height: 100%;
             }
         }
+        .nest-menu .el-submenu>.el-submenu__title,
+        .el-submenu .el-menu-item{
+            min-width: $sideBarWidth !important;
+            background-color: $subMenuBg !important;
+            &:hover {
+                background-color: $subMenuHover !important;
+            }
+        }
         .el-menu {
             border: none;
             height: 100%;
