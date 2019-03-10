@@ -3,6 +3,7 @@
   <el-scrollbar wrap-class="scrollbar-wrapper">
     <el-menu
       :collapse="isCollapse"
+      :default-active="$route.path"
       :background-color="variables.menuBg"
       :text-color="variables.menuText"
       :active-text-color="variables.menuActiveText"
