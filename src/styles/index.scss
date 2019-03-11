@@ -1,7 +1,37 @@
 @import './variables.scss';
 @import './sidebar.scss';
+html {
+    //此处也设置成高度等于100%，呼应body的高度等于100%，只是为了兼容IE6、firefox
+    height: 100%;
+    // border-box 告诉浏览器去理解你设置的边框和内边距的值是包含在width内的
+    // 
+    box-sizing: border-box;
+}
+
+body {
+    // 设置body高度100%自适应屏幕 即高度自适应
+    height: 100%;
+    //grayscale 更清晰的作用
+    -moz-osx-font-smoothing: grayscale;
+    // 针对图标字体进行抗锯齿渲染
+    -webkit-font-smoothing: antialiased;
+    // 文本渲染 当绘制文本时，浏览器会侧重文本的可读性（清晰度），而不是渲染速度和几何 精度
+    text-rendering: optimizeLegibility;
+    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+}
+
+label {
+    font-weight: 700;
+}
+
 #app {
     height: 100%;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
 }
 
 a,
@@ -27,6 +57,6 @@ a:active {
     min-height: 100%;
 }
 
-.app-container{
-    padding:20px;
+.app-container {
+    padding: 20px;
 }

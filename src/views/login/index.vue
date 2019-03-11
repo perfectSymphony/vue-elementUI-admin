@@ -20,7 +20,7 @@
         </el-form-item>
         <el-form-item>
           <!-- vue 里面所有键盘事件都是需要加.native才能生效，如果在当前按钮之前绑定过键盘点击事件，后面的按钮都需要加.native才能生效。prevent是阻止冒泡 -->
-            <el-button :loading="loading" type="primary" @click.native.prevent="handleLogin" style="width:100%;">Sign in</el-button>
+            <el-button :loading="loading" type="primary" @click.native.prevent="handleLogin" style="width:100%;">登录</el-button>
         </el-form-item>
         <div class="tips">
           <span style="margin-right: 20px;">username: admin</span>
