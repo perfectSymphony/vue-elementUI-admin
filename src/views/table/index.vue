@@ -3,7 +3,7 @@
   <el-table
     v-loading="listloading"
     :data="list"
-    element-loading-text="Loading"
+    element-loading-text="拼命加载中"
     border
     fit
     highlight-current-row>
@@ -17,9 +17,9 @@
             <span>{{scope.row.title}}</span>
         </template>
     </el-table-column>
-    <el-table-column align="center" label="作者" width="110">
+    <el-table-column align="center" label="作者" width="150">
         <template slot-scope="scope">
-            <span>{{scope.row.author}}</span>
+            <a href="">{{scope.row.author}}</a>
         </template>
     </el-table-column>
     <el-table-column align="center" label="阅读次数" width="110"> 
