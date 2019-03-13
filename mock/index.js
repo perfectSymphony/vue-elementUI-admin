@@ -1,5 +1,6 @@
 import Mock from 'mockjs'
 import userAPI from './user'
+import tableAPI from './table'
 
 // Fix an issue with setting withCredentials = true, cross-domain request lost cookies  
 // https://github.com/nuysoft/Mock/issues/300
@@ -15,5 +16,9 @@ Mock.XHR.prototype.send = function() {
 Mock.mock(/\/user\/login/, 'post', userAPI.login)
 Mock.mock(/\/user\/info/, 'get', userAPI.getInfo)
 Mock.mock(/\/user\/logout/, 'post', userAPI.logout)
+
+//table页面接口
+Mock.mock(/\table\/list/, 'get', tableAPI.list)
+
 
 export default Mock
