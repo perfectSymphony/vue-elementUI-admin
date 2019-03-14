@@ -17,6 +17,7 @@ import router from './router'
 import '@/icons/svg' // icon
 import '@/permission' // 权限控制
 
+//移除 '../mock',则将自动切换到请求easy-mock上面模拟数据
 import '../mock'
 
 Vue.use(ElementUI, { locale })
