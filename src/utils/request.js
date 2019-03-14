@@ -1,20 +1,25 @@
+//封装axios
+
+// 每一个请求都是要带 token 来验证权限的，这样封装以下的话我们就不用每个请求都手动来塞 token，或者来做一些统一的异常处理，一劳永逸
+
 import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
 import store from '../store'
 import { getToken } from '@/utils/auth'
 
+// 我们的 api 是根据 env 环境变量动态切换的
 //创建axios实例
 const service = axios.create({
     baseURL: process.env.BASE_API,
     timeout: 5000 //设定超时时间
 })
 
-// request拦截器
+// request请求拦截器
 service.interceptors.request.use(
     config => {
         if (store.getters.token) {
             //这个config后面点的是headers，不是header，哎呀，坑了我一天，哎呀呀
-            config.headers["X-Token"] = getToken() //让每个请求携带自定义的token，可以跟自己的实际情况自行修改
+            config.headers["X-Token"] = getToken() //让每个请求携带自定义的token，
         }
         return config
     },
@@ -24,7 +29,7 @@ service.interceptors.request.use(
     }
 )
 
-//response拦截器
+//response服务器响应拦截器
 service.interceptors.response.use(
     response => {
         /***
