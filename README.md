@@ -1,5 +1,5 @@
 # vue-elementUI-admin
-> A Vue.js project
+> 跟着大神从头开始撸的vue项目，我的这个项目里面加了很多的代码注释，比较详细，并且跟着撸的同时也加入了自己的设计想法。
 
 ## Build Setup
 
