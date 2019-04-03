@@ -71,8 +71,14 @@
         }
         &.hideSidebar {
             .sidebar-container {
+                // 让元素实体 “虚化”
+                // 例如一个应用 pointer-events: none 的div元素，
+                // 则我们在页面上看到的这个按钮，只是一个虚幻的影子而已，您可以理解为海市蜃楼，幽灵的躯体。当我们用手触碰它的时候可以轻易地没有任何感觉地从中穿过去。
                 pointer-events: none;
+                // 规定完成过渡效果需要花费的时间（以秒或毫秒计）
                 transition-duration: 0.3s;
+                // transform: translate3d(x, y, z);
+                //transform属性向元素应用2D或者3D转换。该属性允许我们对元素进行旋转、缩放、移动或者倾斜
                 transform: translate3d(-$sideBarWidth, 0, 0);
             }
         }
