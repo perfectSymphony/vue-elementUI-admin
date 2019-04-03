@@ -26,7 +26,7 @@
             }
         }
         .nest-menu .el-submenu>.el-submenu__title,
-        .el-submenu .el-menu-item{
+        .el-submenu .el-menu-item {
             min-width: $sideBarWidth !important;
             background-color: $subMenuBg !important;
             &:hover {
@@ -39,7 +39,7 @@
             width: 100% !important;
         }
         .svg-icon {
-            margin-right:16px;
+            margin-right: 16px;
         }
     }
     .hideSidebar {
@@ -50,7 +50,7 @@
             margin-left: 36px;
         }
         .el-submenu {
-            // overflow: hidden;
+            overflow: hidden;
             //">"子选择器
             &>.el-submenu__title {
                 padding-left: 10px !important;
@@ -58,6 +58,29 @@
                     display: none;
                 }
             }
+        }
+    }
+    //适配移动端
+    .mobile {
+        .main-container {
+            margin-left: 0px;
+        }
+        .sidebar-container {
+            transition: transform .28s;
+            width: $sideBarWidth !important;
+        }
+        &.hideSidebar {
+            .sidebar-container {
+                pointer-events: none;
+                transition-duration: 0.3s;
+                transform: translate3d(-$sideBarWidth, 0, 0);
+            }
+        }
+    }
+    .withoutAnimation {
+        .main-container,
+        .sidebar-container {
+            transition: none;
         }
     }
 }

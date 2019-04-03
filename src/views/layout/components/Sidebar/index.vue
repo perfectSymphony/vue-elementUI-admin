@@ -2,6 +2,7 @@
 <!-- sidebar接收collapse，路由数组，同时引入sidebarItem组件 -->
   <el-scrollbar wrap-class="scrollbar-wrapper">
     <el-menu
+      :show-timeout="200"
       :collapse="isCollapse"
       :default-active="$route.path"
       :background-color="variables.menuBg"
