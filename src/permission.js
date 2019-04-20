@@ -9,6 +9,7 @@ NProgress.configure({ showSpinner: false }) //禁用进度环
 const whiteList = ['/login'] //不重定向白名单
 router.beforeEach((to, from, next) => {
     NProgress.start()
+    console.log(getToken())
     if (getToken()) {
         if (to.path === '/login') {
             next({ path: '/' })
@@ -33,7 +34,7 @@ router.beforeEach((to, from, next) => {
         if (whiteList.indexOf(to.path) !== -1) {
             next()
         } else {
-            next(`/login?redirect=${to.path}`) //否则全部重定向到登录页
+           next(`/login?redirect=${to.path}`) //否则全部重定向到登录页
             NProgress.done()
         }
     }

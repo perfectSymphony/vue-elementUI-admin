@@ -7,6 +7,8 @@ export function getToken() {
 }
 
 export function setToken(token) {
+    //创建有效期为7天的cookie
+    // Cookies.set('name', 'value', { expires: 7 });
     return Cookies.set(TokenKey, token)
 }
 

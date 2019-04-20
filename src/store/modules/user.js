@@ -30,11 +30,11 @@ const user = {
             const username = userInfo.username.trim()
             return new Promise((resolve, reject) => {
                 //下面是Login向后台发送username,userInfo.password获得登陆成功或失败的数据
-                //成功则设置token
+                //验证账号、密码成功之后，从服务器返回token值
                 login(username, userInfo.password).then(response => {
                     const data = response.data
-                    setToken(data.token)
-                    commit('SET_TOKEN', data.token) //登录成功后将token存储在cookie之中
+                    setToken(data.token)        //登录成功后将token存储在cookie之中
+                    commit('SET_TOKEN', data.token) 
                     resolve()
                 }).catch(error => {
                     reject(error)
