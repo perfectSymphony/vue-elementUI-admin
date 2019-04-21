@@ -42,7 +42,7 @@ export default {
     getInfo: res => {
         const { token } = param2Obj(res.url)
         const info = users[token]
-
+            // console.log(info)
         if (info) {
             return {
                 code: 20000,

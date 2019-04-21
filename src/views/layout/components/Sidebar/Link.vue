@@ -19,9 +19,8 @@ export default {
 
     methods: {
         linkProps(url){
-            console.log(url)
+            // console.log(url)
             if(isExternal(url)){
-                console.log(1)
                 return {
                     is: 'a',
                     href: url,

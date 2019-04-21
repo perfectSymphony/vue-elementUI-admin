@@ -10,7 +10,7 @@
         </app-link>
       </template>
       <!-- 创建菜单分组 -->
-      <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)">
+      <el-submenu v-else :index="resolvePath(item.path)">
         <template slot="title">
             <item :meta = "item.meta" />
         </template>
@@ -62,11 +62,13 @@ export default {
     methods: {
       hasOneShowingChild(children = [], parent){
         const showingChildren = children.filter(item => {
+          console.log(item.path)
           if(item.hidden){
             return false
           }else{
             //临时存储（只有一个子节点时）
             this.onlyOneChild = item
+            console.log(item)
             return true
           }
         })
@@ -77,6 +79,7 @@ export default {
           //没有子路由时，只展示父级路由
         if(showingChildren.length === 0){
           this.onlyOneChild = { ... parent, path: '', noShowingChildren: true }
+          console.log(this.onlyOneChild)
           return true
         }
         return false
