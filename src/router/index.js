@@ -154,6 +154,17 @@ export const constantRouterMap = [{
         }]
     },
     {
+        path: 'external-link',
+        component: Layout,
+        children: [{
+            path: 'https://github.com/perfectSymphony/vue-elementUI-admin',
+            meta: {
+                title: 'External Link',
+                icon: 'link'
+            }
+        }]
+    },
+    {
         path: '*',
         redirect: '404',
         hidden: true
@@ -161,7 +172,7 @@ export const constantRouterMap = [{
 ]
 
 export default new Router({
-    mode: 'history',
+    mode: 'history', //后端支持
     scrollBehavior: () => ({ y: 0 }),
     routes: constantRouterMap
 })
