@@ -9,6 +9,7 @@
   </el-breadcrumb>
 </template>
 <script>
+// 该工具库用来处理 url 中地址与参数
 import pathToRegexp from 'path-to-regexp'
 
 export default {
@@ -37,21 +38,29 @@ export default {
         //this.$route表示当前正在用于跳转的路由对象，可以调用其name、path、query、params等
         //filter是默认会传入当前的item，而且filter的第一个参数默认就是当前的item
         let matched = this.$route.matched.filter(item => item.name)
-        //console.log(matched)
-        //console.log(this.$router)
+        // console.log(matched[0])
         const first = matched[0]
-        if(first && first.name !== 'dashboard'){
+        console.log(this.isDashboard(first))
+        if(!this.isDashboard(first)){
           matched = [{
-            path: '/dashboard',
+            path: '',
             meta: {
-              title: 'Dashboard'
+              title: 'dashboard'
             }
           }].concat(matched)
         }
-        this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
+        this.levelList = matched
+      },
+      isDashboard(route) {
+        const name = route && route.name
+        if (!name) {
+          return false
+        }
+        return name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase()
       },
       pathCompile(path){
         const { params } = this.$route
+        // 快速填充 url 字符串的参数值
         var toPath = pathToRegexp.compile(path)
         return toPath(params)
       },
@@ -64,19 +73,25 @@ export default {
         //$route为当前route跳转对象里面可以获取name、path、query、params
         //$router为VueRouter实例，想要导航到不同的URL，则使用$router.push方法
         this.$router.push(this.pathCompile(path))
+        console.log(this.pathCompile(path))
       }
     }
 }
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
+  //.app-breadcrumb .el-breadcrumb //中间有空格隔开，表示后代选择器，选择的是.el-breadcrumb内的.el-breadcrumb
+  //.app-breadcrumb.el-breadcrumb  //则是在一个元素上，这个元素包括这两个类才会有效果。
+  // 在less/scss中的写法：如下面写法所示，<上面是普通的css的写法>
+
   .app-breadcrumb.el-breadcrumb {
-    display: inline-block;
-    font-size: 14px;
-    line-height: 50px;
-    margin-left: 10px;
-    .no-redirect {
-      color: #97a8be;
-      cursor: text;
+    &.el-breadcrumb {
+      display: inline-block;
+      font-size: 14px;
+      line-height: 50px;
+      margin-left: 10px;
+      .no-redirect {
+        color: #97a8be;
+      }      
     }
   }
 </style>
